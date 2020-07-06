@@ -10,6 +10,8 @@ A extração dos dados foi reazada no Pentaho Data Integration (v9.0) através d
 
 Foram realizados tratamentos estatísticos com o fim dar qualidade às análise feitas.
 
+<img href="Estatísticas" src="https://github.com/hugomsouto/analise-precos-covid/blob/master/estatisticas.png" width="600" />
+
 ### Transformações a serem transferidas do RapidMiner para o Pentaho
 * Pivô da tabela por UNIDADE_CATMAT
 * Pivô da tabela por UNIDADE_CATMAT e COVID
