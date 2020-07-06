@@ -15,12 +15,9 @@ Foram realizados tratamentos estatísticos com o fim dar qualidade às análise 
 * Pivô da tabela por UNIDADE_CATMAT e COVID
 * Filtro count(UNIDADE_CATMAT) > 100
 * Filtro standard_deviation(VALOR_UNITARIO) < 100
-* Criação de coluna DIFERENCA: 
-> ```([median(VALOR_UNITARIO)_Sim]-[median(VALOR_UNITARIO)_Não])/[median(VALOR_UNITARIO)_Não]*100```
-* Criação de coluna NORMALIZADO: 
-> ```VALOR_UNITARIO-[median(VALOR_UNITARIO)])/[standard_deviation(VALOR_UNITARIO)]```
-* Criação de coluna OUTLIER_NOVO:
-> ```if(NORMALIZADO>0.2,1,0)```
+* Criação de coluna DIFERENCA: ```([median(VALOR_UNITARIO)_Sim]-[median(VALOR_UNITARIO)_Não])/[median(VALOR_UNITARIO)_Não]*100```
+* Criação de coluna NORMALIZADO: ```VALOR_UNITARIO-[median(VALOR_UNITARIO)])/[standard_deviation(VALOR_UNITARIO)]```
+* Criação de coluna OUTLIER_NOVO: ```if(NORMALIZADO>0.2,1,0)```
 * Filtro (opcional) para trazer apenas COVID = 0
 
 ## Etapa 3: Upload para o Google Planilhas
