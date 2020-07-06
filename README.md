@@ -12,4 +12,8 @@ Foram realizados tratamentos estatísticos com o fim dar qualidade às análise 
 
 ## Etapa 3: Upload para o Google Planilhas
 
+O arquivo resultante das transformações do RapidMiner são tranformados em planilhas do Google para incorporação dos relatórios do Data Studio.
+
 ## Etapa 3: Integração com o relatório do Data Studio.
+
+Os dados são adicionados como fonte de dados do relatório: https://datastudio.google.com/reporting/5ccdc714-74c2-4c5f-a4c2-8f9a71223c68.
