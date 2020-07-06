@@ -4,17 +4,18 @@ Análise dos efeitos da pandemia nos preços dos produtos mais comprados pelo Go
 
 ## Etapa 1: Extração dos dados no DaaS (Quartzo) SERPRO
 
-A extração dos dados foi reazada no Pentaho Data Integration (v9.0) através do processo "pentaho-precos-covid.ktr".
+A extração dos dados foi reazada no Pentaho Data Integration (v9.0) através do processo [pentaho-precos-covid.ktr](https://github.com/hugomsouto/analise-precos-covid/blob/master/pentaho-precos-covid.ktr).
 
 ## Etapa 2: Transformações no RapidMiner
 
-Foram realizados tratamentos estatísticos com o fim dar qualidade às análise feitas.
+Foram realizados um processo de tratamentos estatísticos com o fim dar qualidade às análises, disponível em [rapidminer-precos-covid.rmp](https://github.com/hugomsouto/analise-precos-covid/blob/master/rapidminer-precos-covid.rmp).
 
+O pivô abaixo traz estatísticas consolidades por UNIDADE_CATMAT:
 <img href="Estatísticas" src="https://github.com/hugomsouto/analise-precos-covid/blob/master/estatisticas.png" width="600" />
 
 ### Transformações a serem transferidas do RapidMiner para o Pentaho
-* Pivô da tabela por UNIDADE_CATMAT
-* Pivô da tabela por UNIDADE_CATMAT e COVID
+* Pivô da tabela por UNIDADE_CATMAT (imagem acima)
+* Pivô da tabela por UNIDADE_CATMAT e COVID (imagem acima)
 * Filtro count(UNIDADE_CATMAT) > 100
 * Filtro standard_deviation(VALOR_UNITARIO) < 100
 * Criação de coluna DIFERENCA: ```([median(VALOR_UNITARIO)_Sim]-[median(VALOR_UNITARIO)_Não])/[median(VALOR_UNITARIO)_Não]*100```
