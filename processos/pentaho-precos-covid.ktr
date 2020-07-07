@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>preçoscovid-atualização-v2</name>
+    <name>pentaho-precos-covid</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -430,7 +430,7 @@
     <created_user>-</created_user>
     <created_date>2020/04/26 14:58:10.491</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2020/07/06 18:55:23.203</modified_date>
+    <modified_date>2020/07/07 01:39:35.305</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
@@ -608,28 +608,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Normaliza UNIDADE</from>
-      <to>Concat ITEM</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Subst. ITEM</from>
-      <to>Sort SIASG</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>SIASG</from>
       <to>Limpacento</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Concat ITEM</from>
-      <to>Concat NOME</to>
+      <from>Normaliza UNIDADE</from>
+      <to>Concat ITEM</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Concat NOME</from>
-      <to>Subst. ITEM</to>
+      <from>Concat ITEM</from>
+      <to>Sort SIASG</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -644,8 +634,8 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator> - </separator>
-    <enclosure>"</enclosure>
+    <separator> </separator>
+    <enclosure/>
     <enclosure_forced>N</enclosure_forced>
     <enclosure_fix_disabled>N</enclosure_fix_disabled>
     <header>N</header>
@@ -676,7 +666,7 @@
     </file>
     <fields>
       <field>
-        <name>ITEM_DESCRICAO</name>
+        <name>ITEM_DESCRICAO_1</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -700,7 +690,7 @@
         <precision>-1</precision>
       </field>
       <field>
-        <name>UNIDADE</name>
+        <name>UNIDADE_1</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -726,8 +716,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
-      <yloc>80</yloc>
+      <xloc>496</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -743,16 +733,16 @@
       <schema_name/>
     </partitioning>
     <formula>
-      <field_name>ITEM_DESCRICAO</field_name>
-      <formula_string>org.apache.commons.lang3.StringUtils.stripAccents(ITEM_DESCRICAO_0)</formula_string>
+      <field_name>ITEM_DESCRICAO_1</field_name>
+      <formula_string>org.apache.commons.lang3.StringUtils.stripAccents(ITEM_DESCRICAO)</formula_string>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
       <replace_field/>
     </formula>
     <formula>
-      <field_name>UNIDADE</field_name>
-      <formula_string>org.apache.commons.lang3.StringUtils.stripAccents(UNIDADE_0)</formula_string>
+      <field_name>UNIDADE_1</field_name>
+      <formula_string>org.apache.commons.lang3.StringUtils.stripAccents(UNIDADE)</formula_string>
       <value_type>String</value_type>
       <value_length>-1</value_length>
       <value_precision>-1</value_precision>
@@ -767,8 +757,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>160</xloc>
-      <yloc>80</yloc>
+      <xloc>176</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -801,8 +791,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>144</yloc>
+      <xloc>832</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -882,7 +872,7 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>ITEM_DESCRICAO</name>
+        <name>ITEM_DESCRICAO_1</name>
         <type>String</type>
         <format/>
         <title>ITEM_DESCRICAO</title>
@@ -906,7 +896,7 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>UNIDADE</name>
+        <name>UNIDADE_1</name>
         <type>String</type>
         <format/>
         <title>UNIDADE</title>
@@ -930,18 +920,6 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>NOME_ITEM</name>
-        <type>String</type>
-        <format/>
-        <title>NOME_ITEM</title>
-        <titleStyleCell/>
-        <styleCell/>
-        <commentField/>
-        <commentAuthorField/>
-        <formula>N</formula>
-        <hyperlinkField/>
-      </field>
-      <field>
         <name>QUANTIDADE</name>
         <type>Integer</type>
         <format/>
@@ -954,10 +932,10 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>IT_VA_PRECO_UNITARIO_ITEM</name>
-        <type>Number</type>
+        <name>VALOR_UNITARIO</name>
+        <type>BigNumber</type>
         <format>"$"#,##0.00_);("$"#,##0.00)</format>
-        <title>PRECO_UNITARIO</title>
+        <title>VALOR_UNITARIO</title>
         <titleStyleCell/>
         <styleCell/>
         <commentField/>
@@ -1062,7 +1040,7 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>hierarquianivel1</name>
+        <name>ORGAO_SUPERIOR</name>
         <type>String</type>
         <format/>
         <title>ORGAO_SUPERIOR</title>
@@ -1074,7 +1052,7 @@
         <hyperlinkField/>
       </field>
       <field>
-        <name>ORGAO</name>
+        <name>nome</name>
         <type>String</type>
         <format/>
         <title>ORGAO</title>
@@ -1131,8 +1109,110 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1200</xloc>
-      <yloc>144</yloc>
+      <xloc>960</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Normaliza UNIDADE</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>UNIDADE</field_to_use>
+    <target_field/>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>UNIDADES</source_value>
+        <target_value>UNIDADE</target_value>
+      </field>
+      <field>
+        <source_value>CX</source_value>
+        <target_value>CAIXA</target_value>
+      </field>
+      <field>
+        <source_value>UND</source_value>
+        <target_value>UNDADE</target_value>
+      </field>
+      <field>
+        <source_value>UNID</source_value>
+        <target_value>UNIDADE</target_value>
+      </field>
+      <field>
+        <source_value>PARES</source_value>
+        <target_value>PAR</target_value>
+      </field>
+      <field>
+        <source_value>LITRO</source_value>
+        <target_value>FRASCO 1000 ML</target_value>
+      </field>
+      <field>
+        <source_value>FRASCO 1 L</source_value>
+        <target_value>FRASCO 1000 ML</target_value>
+      </field>
+      <field>
+        <source_value>UMA</source_value>
+        <target_value>UNIDADE</target_value>
+      </field>
+      <field>
+        <source_value>UN</source_value>
+        <target_value>UNIDADE</target_value>
+      </field>
+      <field>
+        <source_value>DZ</source_value>
+        <target_value>DUZIAS</target_value>
+      </field>
+      <field>
+        <source_value>KG.</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>K</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>KGS</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>KILO</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>KILOGRAMA</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>KILOGRAMAS</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>QUILO</source_value>
+        <target_value>KG</target_value>
+      </field>
+      <field>
+        <source_value>QUILOGRAMA</source_value>
+        <target_value>KG</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>368</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1154,15 +1234,14 @@
 	CASE WHEN c.IT_CO_MODALIDADE_LICITACAO = '05' THEN 'Pregão'
 		 WHEN c.IT_CO_MODALIDADE_LICITACAO = '06' AND c.IT_DA_RESULTADO_ITEM IS NULL THEN 'Dispensa Tradicional'
 		 WHEN c.IT_CO_MODALIDADE_LICITACAO = '06' AND c.IT_DA_RESULTADO_ITEM IS NOT NULL THEN 'Cotação Eletrônica' END AS MODALIDADE,
-	RTRIM(c.IT_TX_DESCRICAO_MATERIAL) AS ITEM_DESCRICAO_0,
+	RTRIM(c.IT_TX_DESCRICAO_MATERIAL) AS ITEM_DESCRICAO,
 	CAST(c.IT_CO_CONJUNTO_MATERIAIS AS STRING) AS CATMAT,
-	RTRIM(c.IT_TX_DESCRICAO_MATERIAL)||' - '||CAST(c.IT_CO_CONJUNTO_MATERIAIS AS STRING) AS ITEM_NOME,
 	CASE WHEN c.IT_QT_CAPACIDADE IS NULL OR IT_SG_UNIDADE_MEDIDA IS NULL THEN TRIM(c.IT_NO_UNIDADE_MEDIDA)
-		 ELSE TRIM(c.IT_NO_UNIDADE_MEDIDA)||' '||TRIM(CAST(c.IT_QT_CAPACIDADE AS INTEGER)||' '||TRIM(c.IT_SG_UNIDADE_MEDIDA)) END AS UNIDADE_0,
+		 ELSE TRIM(c.IT_NO_UNIDADE_MEDIDA)||' '||TRIM(CAST(c.IT_QT_CAPACIDADE AS INTEGER)||' '||TRIM(c.IT_SG_UNIDADE_MEDIDA)) END AS UNIDADE,
 	CAST(IT_QT_MATERIAL_ALT AS INTEGER) AS QUANTIDADE,
-	CAST(IT_QT_MATERIAL_ALT AS INTEGER)/c.IT_VA_ESTIMADO AS PRECO_UNITARIO_CALCULADO,
-	c.IT_VA_PRECO_UNITARIO_ITEM AS PRECO_UNITARIO,
-	c.IT_VA_ESTIMADO AS PRECO_TOTAL,
+--	c.IT_VA_PRECO_UNITARIO_ITEM AS PRECO_UNITARIO,
+	c.IT_VA_ESTIMADO/CAST(IT_QT_MATERIAL_ALT AS INTEGER) AS VALOR_UNITARIO,
+	c.IT_VA_ESTIMADO AS VALOR_TOTAL,
 	c.IT_NO_RAZAO_SOCIAL_VENCEDOR AS FORNECEDOR,
 	c.IT_NU_CGC_CPF_VENCEDOR AS CNPJ,
 	CAST(IFNULL(SUBSTRING(c.IT_DA_RESULTADO_ITEM,1,4)||'-'||SUBSTRING(c.IT_DA_RESULTADO_ITEM,5,2)||'-'||SUBSTRING(c.IT_DA_RESULTADO_ITEM,7,2), SUBSTRING(c.IT_DA_TRANSACAO,1,4)||'-'||SUBSTRING(c.IT_DA_TRANSACAO,5,2)||'-'||SUBSTRING(c.IT_DA_TRANSACAO,7,2)) AS DATE) AS DATA,
@@ -1303,11 +1382,11 @@ WHERE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>ITEM_DESCRICAO_0</name>
+        <name>ITEM_DESCRICAO</name>
         <length>4000</length>
         <precision>-1</precision>
         <origin>SIASG</origin>
-        <comments>ITEM_DESCRICAO_0</comments>
+        <comments>ITEM_DESCRICAO</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1349,34 +1428,11 @@ WHERE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>ITEM_NOME</name>
+        <name>UNIDADE</name>
         <length>4000</length>
         <precision>-1</precision>
         <origin>SIASG</origin>
-        <comments>ITEM_NOME</comments>
-        <conversion_Mask/>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Cayenne</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>String</type>
-        <storagetype>normal</storagetype>
-        <name>UNIDADE_0</name>
-        <length>4000</length>
-        <precision>-1</precision>
-        <origin>SIASG</origin>
-        <comments>UNIDADE_0</comments>
+        <comments>UNIDADE</comments>
         <conversion_Mask/>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1418,37 +1474,14 @@ WHERE
       <value-meta>
         <type>BigNumber</type>
         <storagetype>normal</storagetype>
-        <name>PRECO_UNITARIO_CALCULADO</name>
+        <name>VALOR_UNITARIO</name>
         <length>20</length>
         <precision>0</precision>
         <origin>SIASG</origin>
-        <comments>PRECO_UNITARIO_CALCULADO</comments>
+        <comments>VALOR_UNITARIO</comments>
         <conversion_Mask>######0.0###################;-######0.0###################</conversion_Mask>
         <decimal_symbol>.</decimal_symbol>
         <grouping_symbol/>
-        <currency_symbol/>
-        <trim_type>none</trim_type>
-        <case_insensitive>N</case_insensitive>
-        <collator_disabled>Y</collator_disabled>
-        <collator_strength>0</collator_strength>
-        <sort_descending>N</sort_descending>
-        <output_padding>N</output_padding>
-        <date_format_lenient>N</date_format_lenient>
-        <date_format_locale>en_US</date_format_locale>
-        <date_format_timezone>America/Cayenne</date_format_timezone>
-        <lenient_string_to_number>N</lenient_string_to_number>
-      </value-meta>
-      <value-meta>
-        <type>Number</type>
-        <storagetype>normal</storagetype>
-        <name>IT_VA_PRECO_UNITARIO_ITEM</name>
-        <length>-1</length>
-        <precision>0</precision>
-        <origin>SIASG</origin>
-        <comments>PRECO_UNITARIO</comments>
-        <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
-        <decimal_symbol>,</decimal_symbol>
-        <grouping_symbol>.</grouping_symbol>
         <currency_symbol/>
         <trim_type>none</trim_type>
         <case_insensitive>N</case_insensitive>
@@ -1468,7 +1501,7 @@ WHERE
         <length>-1</length>
         <precision>0</precision>
         <origin>SIASG</origin>
-        <comments>PRECO_TOTAL</comments>
+        <comments>VALOR_TOTAL</comments>
         <conversion_Mask>####0.0#########;-####0.0#########</conversion_Mask>
         <decimal_symbol>,</decimal_symbol>
         <grouping_symbol>.</grouping_symbol>
@@ -1586,8 +1619,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>64</xloc>
-      <yloc>80</yloc>
+      <xloc>80</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1606,8 +1639,9 @@ WHERE
     <sql>SELECT
 	CASE WHEN u.sisg = 'T' THEN 'SISG'
 		 WHEN u.sisg = 'F' THEN 'Não SISG' END AS SISG,
-	u.hierarquianivel1 AS ORGAO_SUPERIOR,
-	o.numeroorgao||' - '||o.nome AS ORGAO,
+	CASE WHEN u.hierarquianivel1 IS NULL THEN o.nome 
+		 ELSE UPPER(u.hierarquianivel1) END AS ORGAO_SUPERIOR,
+	o.nome AS ORGAO,
 	c.numerouasgresponsavel||' - '||u.nome AS UASG,
 	CASE WHEN o.codigopoder = 0 THEN 'Executivo'
 		 WHEN o.codigopoder = 1 THEN 'Legislativo'
@@ -1641,8 +1675,9 @@ UNION
 SELECT
 	CASE WHEN u.sisg = 'T' THEN 'SISG'
 		 WHEN u.sisg = 'F' THEN 'Não SISG' END AS SISG,
-	u.hierarquianivel1 AS ORGAO_SUPERIOR,
-	o.numeroorgao||' - '||o.nome AS ORGAO,
+	CASE WHEN u.hierarquianivel1 IS NULL THEN o.nome 
+		 ELSE UPPER(u.hierarquianivel1) END AS ORGAO_SUPERIOR,
+	o.nome AS ORGAO,
 	c.numerouasgresponsavel||' - '||u.nome AS UASG,
 	CASE WHEN o.codigopoder = 0 THEN 'Executivo'
 		 WHEN o.codigopoder = 1 THEN 'Legislativo'
@@ -1704,8 +1739,8 @@ WHERE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>hierarquianivel1</name>
-        <length>150</length>
+        <name>ORGAO_SUPERIOR</name>
+        <length>4000</length>
         <precision>-1</precision>
         <origin>Siasgnet</origin>
         <comments>ORGAO_SUPERIOR</comments>
@@ -1727,8 +1762,8 @@ WHERE
       <value-meta>
         <type>String</type>
         <storagetype>normal</storagetype>
-        <name>ORGAO</name>
-        <length>4000</length>
+        <name>nome</name>
+        <length>45</length>
         <precision>-1</precision>
         <origin>Siasgnet</origin>
         <comments>ORGAO</comments>
@@ -1918,8 +1953,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>736</xloc>
-      <yloc>224</yloc>
+      <xloc>496</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1960,8 +1995,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>80</yloc>
+      <xloc>592</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2010,8 +2045,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>832</xloc>
-      <yloc>224</yloc>
+      <xloc>592</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2028,7 +2063,7 @@ WHERE
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>ITEM_DESCRICAO</in_stream_name>
+        <in_stream_name>ITEM_DESCRICAO_1</in_stream_name>
         <out_stream_name/>
         <trim_type>none</trim_type>
         <lower_upper>upper</lower_upper>
@@ -2041,7 +2076,7 @@ WHERE
         <remove_special_characters>none</remove_special_characters>
       </field>
       <field>
-        <in_stream_name>UNIDADE</in_stream_name>
+        <in_stream_name>UNIDADE_1</in_stream_name>
         <out_stream_name/>
         <trim_type>none</trim_type>
         <lower_upper>upper</lower_upper>
@@ -2063,8 +2098,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>80</yloc>
+      <xloc>256</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2098,8 +2133,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>80</yloc>
+      <xloc>704</xloc>
+      <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2133,306 +2168,8 @@ WHERE
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Normaliza UNIDADE</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>UNIDADE</field_to_use>
-    <target_field/>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>UNIDADES</source_value>
-        <target_value>UNIDADE</target_value>
-      </field>
-      <field>
-        <source_value>CX</source_value>
-        <target_value>CAIXA</target_value>
-      </field>
-      <field>
-        <source_value>UND</source_value>
-        <target_value>UNDADE</target_value>
-      </field>
-      <field>
-        <source_value>UNID</source_value>
-        <target_value>UNIDADE</target_value>
-      </field>
-      <field>
-        <source_value>PARES</source_value>
-        <target_value>PAR</target_value>
-      </field>
-      <field>
-        <source_value>LITRO</source_value>
-        <target_value>FRASCO 1000 ML</target_value>
-      </field>
-      <field>
-        <source_value>FRASCO 1 L</source_value>
-        <target_value>FRASCO 1000 ML</target_value>
-      </field>
-      <field>
-        <source_value>UMA</source_value>
-        <target_value>UNIDADE</target_value>
-      </field>
-      <field>
-        <source_value>UN</source_value>
-        <target_value>UNIDADE</target_value>
-      </field>
-      <field>
-        <source_value>DZ</source_value>
-        <target_value>DUZIAS</target_value>
-      </field>
-      <field>
-        <source_value>KG.</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>K</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>KGS</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>KILO</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>KILOGRAMA</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>KILOGRAMAS</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>QUILO</source_value>
-        <target_value>KG</target_value>
-      </field>
-      <field>
-        <source_value>QUILOGRAMA</source_value>
-        <target_value>KG</target_value>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>384</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Subst. ITEM</name>
-    <type>ValueMapper</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <field_to_use>ITEM_NOME</field_to_use>
-    <target_field>NOME_ITEM</target_field>
-    <non_match_default/>
-    <fields>
-      <field>
-        <source_value>ALCOOL ETILICO - 269943 - FRASCO 500 ML</source_value>
-        <target_value>ÁLCOOL 70% GEL (500 ML)</target_value>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO - 269941 - FRASCO 1000 ML</source_value>
-        <target_value>ÁLCOOL 70% LÍQUIDO (1 L)</target_value>
-      </field>
-      <field>
-        <source_value>MASCARA CIRURGICA - 341923 - UNIDADE</source_value>
-        <target_value>MÁSCARA CIRURGICA </target_value>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO LIMPEZA DE AMBIENTES - 429225 - GALAO 5 L</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO LIMPEZA DE AMBIENTES - 429225 - FRASCO 1000 ML</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO - 269943 - FRASCO 500 ML</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>LUVA PARA PROCEDIMENTO NAO CIRURGICO - 269894 - CAIXA 100 UN</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO LIMPEZA DE AMBIENTES - 429225 - FRASCO 500 ML</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>LUVA PARA PROCEDIMENTO NAO CIRURGICO - 269892 - CAIXA 100 UN</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>MASCARA CIRURGICA - 435202 - UNIDADE</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>LUVA PARA PROCEDIMENTO NAO CIRURGICO - 443397 - CAIXA 100 UN</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>LUVA PARA PROCEDIMENTO NAO CIRURGICO - 269893 - CAIXA 100 UN</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>AGUA SANITARIA - 310507 - FRASCO 1000 ML</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO LIMPEZA DE AMBIENTES - 429225 - GALAO 5 L</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>MASCARA - 313379 - UNIDADE</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO - 269943 - GALAO 5 L</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>CESTA BASICA - GENEROS ALIMENTICIOS - 113026 - KG</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>MASCARA - 313379 - UNIDADE</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>ALCOOL ETILICO - 269943 - GALAO 5 L</source_value>
-        <target_value/>
-      </field>
-      <field>
-        <source_value>CESTA BASICA - 113026 - GENEROS ALIMENTICIOS - KG</source_value>
-        <target_value/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>736</xloc>
-      <yloc>80</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Concat NOME</name>
-    <type>ConcatFields</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator> - </separator>
-    <enclosure>"</enclosure>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name/>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>ITEM_DESCRICAO</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>both</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>CATMAT</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-      <targetFieldName>NOME</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>624</xloc>
-      <yloc>80</yloc>
+      <xloc>704</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
