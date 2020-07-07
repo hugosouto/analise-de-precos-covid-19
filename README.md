@@ -19,7 +19,7 @@ O pivô abaixo traz estatísticas consolidadas por UNIDADE_CATMAT:
 * Filtro count(UNIDADE_CATMAT) > 100
 * Filtro standard_deviation(VALOR_UNITARIO) < 100
 * Criação de coluna DIFERENCA: ```([median(VALOR_UNITARIO)_Sim]-[median(VALOR_UNITARIO)_Não])/[median(VALOR_UNITARIO)_Não]*100```
-* Criação de coluna NORMALIZADO (com base em [metodologia do TCU](https://github.com/hugomsouto/analise-precos-covid/blob/master/docs/BTCU_Especial_34_2018_Tecnicas%20de%20Amostragem%20Probabilistica%20em%20Auditorias.pdf "Tecnicas de Amostragem Probabilistica em Auditorias"), p. 67): ```VALOR_UNITARIO-[median(VALOR_UNITARIO)])/[standard_deviation(VALOR_UNITARIO)]```
+* Criação de coluna NORMALIZADO (com base em [metodologia do TCU](https://github.com/hugomsouto/analise-precos-covid/blob/master/docs/BTCU_Especial_34_2018_Tecnicas%20de%20Amostragem%20Probabilistica%20em%20Auditorias.pdf "Tecnicas de Amostragem Probabilistica em Auditorias"), p. 67): ```VALOR_UNITARIO-[average(VALOR_UNITARIO)])/[standard_deviation(VALOR_UNITARIO)]```
 * Criação de coluna OUTLIER_NOVO: ```if(NORMALIZADO>0.2,1,0)```
 * Filtro (opcional) para trazer apenas COVID = 0
 
